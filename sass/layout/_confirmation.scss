@@ -1,0 +1,16 @@
+.confirmation {
+  min-height: 80vh;
+  padding-top: 3vh;
+  @include desk-and-tab-version {
+    min-height: 84vh;
+    padding-top: 8vh;
+  }
+}
+.confirmation__text {
+  @include bordradius;
+  width: 95%;
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 8vw;
+  margin-top: 4vw;
+}
