@@ -1,0 +1,19 @@
+$color-primary: #8f5bfe;
+$color-secondary: #e68a0a;
+$color-fond: #f3e9f1;
+$color-gris: rgb(197, 197, 197);
+
+$font-main: "Poppins", sans-serif;
+
+@mixin bordradius {
+  border-radius: 20px;
+}
+
+@mixin ombre {
+  box-shadow: 1px 1px 18px #c0bfbf;
+}
+
+@mixin ombre-hover {
+  box-shadow: 3px 3px 18px #838282;
+  transition: box-shadow 0.4s;
+}

@@ -1,0 +1,27 @@
+/*$bkpt-minimob: 370px;*/
+$bkpt-mob: 768px;
+$bkpt-tab: 1024px;
+
+@mixin tab-version {
+  @media all and (min-width: $bkpt-mob) and (max-width: $bkpt-tab) {
+    @content;
+  }
+}
+
+@mixin desk-and-tab-version {
+  @media all and(min-width: $bkpt-mob) {
+    @content;
+  }
+}
+
+@mixin desk-version {
+  @media all and(min-width: $bkpt-tab) {
+    @content;
+  }
+}
+
+@mixin big-desk-version {
+  @media all and(min-width: 1400px) {
+    @content;
+  }
+}

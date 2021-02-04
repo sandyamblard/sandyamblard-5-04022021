@@ -1,0 +1,70 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include tab-version {
+    padding-top: 12vw;
+  }
+  @include desk-version {
+    padding-top: 5vw;
+  }
+  @include big-desk-version {
+    width: 70%;
+    margin: auto;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+.maintitle {
+  color: $color-secondary;
+  text-align: center;
+  font-weight: 700;
+}
+
+.produit {
+  background-color: white;
+  margin-top: 10vw;
+  @include bordradius;
+  @include tab-version {
+    width: 45%;
+    margin-right: 4%;
+    margin-top: 5vw;
+  }
+  @include desk-version {
+    width: 30%;
+    margin-right: 3%;
+    margin-top: 3vw;
+  }
+  &__legende--prix {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  &__legende--nom {
+    font-weight: 800;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  &__pict img {
+    margin: 0;
+    display: block;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+  }
+}
+
+.listeproduits {
+  width: 95%;
+
+  @include desk-and-tab-version {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,58 @@
+.topbar {
+  width: 100%;
+  background-color: $color-fond;
+  z-index: 5;
+  padding-top: 0.1rem;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  border-bottom: 1px $color-gris solid;
+  box-shadow: 0px 2px 4px $color-gris;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include desk-and-tab-version {
+    position: fixed;
+  }
+  &__logo {
+    width: 50vw;
+    margin-left: 1vw;
+    @include tab-version {
+      width: 25vw;
+    }
+    @include desk-version {
+      width: 10vw;
+    }
+  }
+  .fa-shopping-basket {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    color: $color-primary;
+  }
+  &__panier--count {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: $color-primary;
+    border-radius: 50%;
+    line-height: 1.2rem;
+    font-size: 0.8rem;
+    text-align: center;
+    color: white;
+    transform: translateX(-50%) translateY(-10%);
+  }
+  &__panier {
+    @include desk-version {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+    }
+  }
+  &__panier--legende {
+    display: none;
+    @include desk-version {
+      display: block;
+      margin-right: 2rem;
+      color: $color-primary;
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.footer {
+  width: 100%;
+  background-color: lighten($color-primary, 5%);
+  color: white;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: right;
+  }
+  &__link {
+    text-align: right;
+  }
+}

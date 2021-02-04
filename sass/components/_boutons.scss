@@ -1,0 +1,23 @@
+.bouton {
+  background-color: $color-secondary;
+  opacity: 0.8;
+  width: 80%;
+  color: white;
+  line-height: 3rem;
+  text-align: center;
+  @include bordradius;
+  @include ombre;
+  @include tab-version {
+    width: 50%;
+  }
+  @include desk-version {
+    width: 40%;
+    line-height: 3.5rem;
+  }
+  &:hover {
+    @include ombre-hover;
+    transform: scale(1.1);
+    opacity: 1;
+    transition: all 0.3s;
+  }
+}
