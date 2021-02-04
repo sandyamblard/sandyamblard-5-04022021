@@ -21,3 +21,56 @@
     transition: all 0.3s;
   }
 }
+.formulaire {
+  width: 93%;
+  @include tab-version {
+    width: 70%;
+  }
+  @include desk-version {
+    width: 50%;
+  }
+  &__ligne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    label {
+      flex: none;
+      line-height: 1.5rem;
+      font-weight: 600;
+    }
+    input {
+      flex: auto;
+      margin: 0.5rem;
+      height: 2rem;
+    }
+  }
+}
+button {
+  border-color: transparent;
+  flex: none;
+  outline: none;
+  margin-top: 5vw;
+}
+input {
+  @include bordradius;
+  border: 1px darken($color-fond, 15%) solid;
+  outline: none;
+  padding-left: 1rem;
+  &:focus {
+    border: 2px darken($color-fond, 25%) solid;
+    transition: all 0.2s;
+    @include ombre;
+  }
+  &:valid {
+    border: 1px rgb(10, 138, 10) solid;
+  }
+  .invalid {
+    /*classe à rajouter en JS quand input non valid*/
+    border: 2px rgb(224, 30, 30) solid;
+    transition: border 0.2s;
+    animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+  }
+}
+input[type="checkbox"]:focus {
+  box-shadow: 0 0 0 0;
+}

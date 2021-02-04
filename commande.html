@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orinoco</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/32f1ce6b66.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet"> 
+    <script src='script.js' async></script>
+</head>
+<body>
+   <header class="topbar">
+        <a href="index.html"><img src="logo.png" alt="logo orinoco" class="topbar__logo"></a>
+        <a href="commande.html">
+            <div class="topbar__panier">
+                <div>
+                    <div class="topbar__panier--count">0</div>
+                    <i class="fas fa-shopping-basket"></i>  
+                </div>
+                <p class="topbar__panier--legende">Voir mon panier</p>
+            </div>
+        </a>  
+   </header>
+   <main>
+       <section class="recap">
+        <h1 class="maintitle">Récapitulatif de votre commande</h1>
+        <div class="recap__ligne">
+            <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
+            <div class="recap__ligne--text">
+                <p><span>Nom :</span>Gutsvae</p>
+                <p><span>Decription :</span> dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
+                <p><span>Référence :</span> 72372776576</p>
+            </div>
+            <div class="recap__ligne--quantite">Quantité : 1</div>
+            <div class="recap__ligne--prixtotal">Prix total : 25€</div>
+        </div>
+        <div class="recap__ligne">
+            <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
+            <div class="recap__ligne--text">
+                <p><span>Nom :</span>Gutsvae</p>
+                <p><span>Decription :</span> dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
+                <p><span>Référence :</span> 72372776576</p>
+            </div>
+            <div class="recap__ligne--quantite">Quantité : 1</div>
+            <div class="recap__ligne--prixtotal">Prix total : 25€</div>
+        </div>
+       </section>
+       
+       <form method="post" action="#" class="formulaire">
+           <h1 class="maintitle">Valider votre commande</h1>
+            <div class="formulaire__ligne">
+                <label for="firstname">Prénom : </label> <input type="text" name="firstname" id="firstname" autofocus placeholder="*" required/>
+            </div>    
+            <div class="formulaire__ligne">
+                <label for="lastname">Nom : </label> <input type="text" name="lastname" id="lastname" placeholder="*" required/>
+            </div>
+            <div class="formulaire__ligne">
+               <label for="adress">Adresse : </label> <input type="text" name="adress" id="adress" placeholder="*" required/> 
+            </div>
+            <div class="formulaire__ligne">
+                <label for="city">Ville : </label> <input type="text" name="city" id="city" placeholder="*" required/> 
+             </div>
+             <div class="formulaire__ligne">
+                <label for="email">E-mail : </label> <input type="email" name="email" id="email" placeholder="*" required/> 
+             </div>
+             <div class="formulaire__ligne">
+                <label>Paiement : </label> <input type="checkbox" name="payer" id="payer" required/> 
+             </div>
+             <div class="formulaire__ligne">
+                <button type="submit" class="bouton">Commander</button> 
+             </div>
+       </form>
+    </main>
+         <footer class="footer">
+             <h5 class="footer__title">Orinoco</h5>
+             <p class="footer__link">Nous contacter</p>
+             <p class="footer__link">Mentions légales</p>
+         </footer>
+    </body>
+</html>    

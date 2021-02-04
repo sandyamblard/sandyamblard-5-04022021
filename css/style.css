@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*$bkpt-minimob: 370px;*/
 * {
   -webkit-box-sizing: border-box;
@@ -270,6 +271,163 @@ main a {
   opacity: 1;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.formulaire {
+  width: 93%;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .formulaire {
+    width: 70%;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .formulaire {
+    width: 50%;
+  }
+}
+
+.formulaire__ligne {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.formulaire__ligne label {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  line-height: 1.5rem;
+  font-weight: 600;
+}
+
+.formulaire__ligne input {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+  margin: 0.5rem;
+  height: 2rem;
+}
+
+button {
+  border-color: transparent;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  outline: none;
+  margin-top: 5vw;
+}
+
+input {
+  border-radius: 20px;
+  border: 1px #d8b8d2 solid;
+  outline: none;
+  padding-left: 1rem;
+}
+
+input:focus {
+  border: 2px #c697bd solid;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-box-shadow: 1px 1px 18px #c0bfbf;
+          box-shadow: 1px 1px 18px #c0bfbf;
+}
+
+input:valid {
+  border: 1px #0a8a0a solid;
+}
+
+input .invalid {
+  /*classe à rajouter en JS quand input non valid*/
+  border: 2px #e01e1e solid;
+  -webkit-transition: border 0.2s;
+  transition: border 0.2s;
+  -webkit-animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+          animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+}
+
+input[type="checkbox"]:focus {
+  -webkit-box-shadow: 0 0 0 0;
+          box-shadow: 0 0 0 0;
+}
+
+.recap {
+  width: 85%;
+}
+
+@media all and (min-width: 768px) {
+  .recap {
+    width: 95%;
+  }
+}
+
+.recap__img {
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+}
+
+@media all and (min-width: 768px) {
+  .recap__img {
+    display: block;
+    height: 120px;
+    width: auto;
+    border-radius: 20px 0px 0 20px;
+  }
+}
+
+.recap__ligne {
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+}
+
+@media all and (min-width: 768px) {
+  .recap__ligne {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 1vw;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.recap__ligne--quantite, .recap__ligne--prixtotal {
+  margin-right: 1rem;
+  margin-bottom: 0.7rem;
+  text-align: right;
+}
+
+.recap__ligne--prixtotal {
+  font-weight: 800;
+}
+
+.recap__ligne--text p {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  margin-left: 1rem;
+}
+
+@media all and (min-width: 1024px) {
+  .recap__ligne--text p {
+    margin-left: -5rem;
+  }
+}
+
+.recap__ligne--text p span {
+  text-decoration: underline;
 }
 
 /*

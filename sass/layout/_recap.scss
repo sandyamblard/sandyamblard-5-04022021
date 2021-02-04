@@ -1,0 +1,47 @@
+.recap {
+  width: 85%;
+  @include desk-and-tab-version {
+    width: 95%;
+  }
+  &__img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    @include desk-and-tab-version {
+      display: block;
+      height: 120px;
+      width: auto;
+      border-radius: 20px 0px 0 20px;
+    }
+  }
+  &__ligne {
+    background-color: white;
+    @include bordradius;
+    width: 100%;
+    @include desk-and-tab-version {
+      display: flex;
+      margin-bottom: 1vw;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &--quantite,
+    &--prixtotal {
+      margin-right: 1rem;
+      margin-bottom: 0.7rem;
+      text-align: right;
+    }
+    &--prixtotal {
+      font-weight: 800;
+    }
+    &--text p {
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+      margin-left: 1rem;
+      @include desk-version {
+        margin-left: -5rem;
+      }
+    }
+    &--text p span {
+      text-decoration: underline;
+    }
+  }
+}

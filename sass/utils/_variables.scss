@@ -17,3 +17,13 @@ $font-main: "Poppins", sans-serif;
   box-shadow: 3px 3px 18px #838282;
   transition: box-shadow 0.4s;
 }
+
+/*animation pour input invalide*/
+@keyframes boutoninvalide {
+  25% {
+    transform: translateX(1%);
+  }
+  75% {
+    transform: translateX(-1%);
+  }
+}
