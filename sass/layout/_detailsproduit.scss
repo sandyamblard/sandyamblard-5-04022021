@@ -1,0 +1,68 @@
+.details {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include desk-and-tab-version {
+    width: 85%;
+  }
+  &__card {
+    width: 100%;
+    @include bordradius;
+    background-color: white;
+    margin-bottom: 4vw;
+    img {
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+    }
+    &--ligne {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      .bouton {
+        width: 40%;
+        padding: 1rem;
+        padding-left: 0;
+      }
+      .bouton span {
+        display: none;
+        @include desk-and-tab-version {
+          display: inline;
+        }
+      }
+      .bouton-border {
+        font-weight: 800;
+        width: 40%;
+        padding: 1rem;
+        &:hover {
+          box-shadow: 0 0 0 0;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
+
+.details__card :last-child {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fa-cart-plus {
+  font-size: 3rem;
+}
+
+select {
+  @include bordradius;
+  border: 1px darken($color-fond, 15%) solid;
+  outline: none;
+  padding: 0.3rem 3rem;
+  margin-left: 1rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  &:focus {
+    border: 2px darken($color-fond, 25%) solid;
+    transition: all 0.2s;
+  }
+}

@@ -16,7 +16,7 @@
   }
   &:hover {
     @include ombre-hover;
-    transform: scale(1.1);
+    transform: scale(1.05);
     opacity: 1;
     transition: all 0.3s;
   }
@@ -64,6 +64,7 @@ input {
   &:valid {
     border: 1px rgb(10, 138, 10) solid;
   }
+
   .invalid {
     /*classe à rajouter en JS quand input non valid*/
     border: 2px rgb(224, 30, 30) solid;
@@ -73,4 +74,32 @@ input {
 }
 input[type="checkbox"]:focus {
   box-shadow: 0 0 0 0;
+}
+
+.bouton-border {
+  background-color: lighten($color-fond, 20%);
+  border: 1px $color-secondary solid;
+  width: 60%;
+  line-height: 2rem;
+  text-align: center;
+  margin-top: 6vw;
+  margin-bottom: 6vw;
+  @include bordradius;
+  @include tab-version {
+    width: 35%;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+  }
+  @include desk-version {
+    width: 25%;
+    line-height: 2.5rem;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+  }
+  &:hover {
+    @include ombre;
+    transform: scale(1.05);
+    background-color: white;
+    transition: all 0.3s;
+  }
 }

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orinoco</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="sass/style.css" />
+    <link rel="icon" type="image/png" href="favicone.png" />
     <script src="https://kit.fontawesome.com/32f1ce6b66.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet"> 
@@ -24,8 +25,12 @@
         </a>  
    </header>
    <main>
+       <section class="paniervide">
+        <h2 class="maintitle">Votre panier est vide</h2>
+        <div class="bouton"><a href="index.html">Voir nos produits !</a></div>
+       </section>
        <section class="recap">
-        <h1 class="maintitle">Contenu du panier</h1>
+        <h2 class="maintitle">Contenu du panier</h2>
         <div class="recap__ligne">
             <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
             <div class="recap__ligne--text">
@@ -33,8 +38,8 @@
                 <p><span>Decription :</span> dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
                 <p><span>Référence :</span> 72372776576</p>
             </div>
-            <div class="recap__ligne--quantite">Quantité : 1</div>
-            <div class="recap__ligne--prixtotal">Prix total : 25€</div>
+            <!--div class="recap__ligne--quantite">Quantité : 1</div-->
+            <div class="recap__ligne--prixtotal">Prix : 25€</div>
         </div>
         <div class="recap__ligne">
             <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
@@ -43,13 +48,14 @@
                 <p><span>Decription :</span> dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
                 <p><span>Référence :</span> 72372776576</p>
             </div>
-            <div class="recap__ligne--quantite">Quantité : 1</div>
-            <div class="recap__ligne--prixtotal">Prix total : 25€</div>
+            <!--div class="recap__ligne--quantite">Quantité : 1</div-->
+            <div class="recap__ligne--prixtotal">Prix : 25€</div>
         </div>
+        <div class="bouton-border">Vider le panier</div>
        </section>
        
        <form method="post" action="#" class="formulaire">
-           <h1 class="maintitle">Valider votre commande</h1>
+           <h2 class="maintitle">Valider votre commande</h2>
             <div class="formulaire__ligne">
                 <label for="firstname">Prénom : </label> <input type="text" name="firstname" id="firstname" autofocus placeholder="*" required/>
             </div>    
