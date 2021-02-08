@@ -523,13 +523,13 @@ input[type="checkbox"]:focus {
 
 @media all and (min-width: 768px) and (max-width: 1024px) {
   .recap__ligne--text p {
-    margin-left: -4rem;
+    margin-left: 2rem;
   }
 }
 
 @media all and (min-width: 1024px) {
   .recap__ligne--text p {
-    margin-left: -20rem;
+    margin-left: -1rem;
   }
 }
 

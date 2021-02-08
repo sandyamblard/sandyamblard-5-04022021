@@ -56,10 +56,10 @@
       margin-bottom: 0.3rem;
       margin-left: 1rem;
       @include tab-version {
-        margin-left: -4rem;
+        margin-left: 2rem;
       }
       @include desk-version {
-        margin-left: -20rem;
+        margin-left: -1rem;
       }
     }
     &--text p span {

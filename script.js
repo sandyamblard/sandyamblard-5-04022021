@@ -1,11 +1,11 @@
 
-//Fonction pour creation cartes de présentation produits sur page index
+//Fonctions pour creation cartes de présentation produits sur page index
 let listeProduits = document.getElementById('listeproduits');
 
-let createArticleIndex = function(array){
-    for(let ligne of array){
+let createArticleIndex = function(arrayOfObjects){
+    for(let object of arrayOfObjects){
         let nvArticle = document.createElement('div');
-        nvArticle.innerHTML = '<a href="produit.html"><div class="produit__pict"><img src="'+ ligne.imageUrl + '" alt="image nounours"></div><div class="produit__legende"><p class="produit__legende--nom">' + ligne.name + '</p><p class="produit__legende--prix">Prix : ' + ligne.price * 0.01 + ' €' + '</p></div></a>';
+        nvArticle.innerHTML = '<a href="produit.html?id=' + object._id + '"><div class="produit__pict"><img src="'+ object.imageUrl + '" alt="image nounours"></div><div class="produit__legende"><p class="produit__legende--nom">' + object.name + '</p><p class="produit__legende--prix">Prix : ' + object.price * 0.01 + ' €' + '</p></div></a>';
         nvArticle.classList.add('produit');
         listeProduits.append(nvArticle);
     }
@@ -19,10 +19,11 @@ const getInfos = function(url){
             if (request.status == 200){
                 resolve(
                 result = JSON.parse(request.response),
+                console.log(result)
                 )
                 
             }else if (request.onerror || request.status !=200){
-                reject(console.log("serveur indisponible"));
+                reject(console.log("serveur indisponible, " + "readyState = " + request.readyState));
             }
         }
         request.open('GET', url);
@@ -30,7 +31,7 @@ const getInfos = function(url){
     })
 }
 
-
+//Appel API et AFFICHAGE DYNAMIQUE DES PRODUITS SUR PAGE INDEX
 getInfos('http://localhost:3000/api/teddies')
 .then(listeNounours => 
         createArticleIndex(listeNounours),
@@ -38,9 +39,6 @@ getInfos('http://localhost:3000/api/teddies')
 .catch(console.error);
 
 
-
-/* HTML a INTRODUIRE DANS NOUVEL ARTICLE:
-createArticleIndex().innerHTML = '<a href="produit.html"><div class="produit__pict"><img src="'+ nounoursListe[0].imageUrl + 'alt="image nounours"></div><div class="produit__legende"><p class="produit__legende--nom">' + nounoursListe[0].name + '</p><p class="produit__legende--prix">prix :' + nounoursListe[0].price + '€' + '</p></div></a>',*/
 
 
 ///////////////////////////////////////////////////////////////////////
