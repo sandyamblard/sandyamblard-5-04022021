@@ -17,7 +17,7 @@
         <a href="commande.html">
             <div class="topbar__panier">
                 <div>
-                    <div class="topbar__panier--count">0</div>
+                    <div class="topbar__panier--count" id="paniercompteur">0</div>
                     <i class="fas fa-shopping-basket"></i>  
                 </div>
                 <p class="topbar__panier--legende">Voir mon panier</p>
@@ -34,8 +34,9 @@
         <div class="recap__ligne">
             <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
             <div class="recap__ligne--text">
-                <p><span>Nom :</span>Gutsvae</p>
-                <p><span>Decription :</span> dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
+                <p><span>Nom + lien</span></p>
+                <p>Decription dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
+                <p><span>Couleur :</span> choix select</p>
                 <p><span>Référence :</span> 72372776576</p>
             </div>
             <div class="recap__ligne--quantite">Quantité : 1</div>
@@ -44,8 +45,9 @@
         <div class="recap__ligne">
             <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
             <div class="recap__ligne--text">
-                <p><span>Nom :</span>Gutsvae</p>
-                <p><span>Decription :</span> dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
+                <p><span>Nom + lien</span></p>
+                <p>Decription dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p>
+                <p><span>Couleur :</span> choix select</p>
                 <p><span>Référence :</span> 72372776576</p>
             </div>
             <div class="recap__ligne--quantite">Quantité : 1</div>
@@ -75,7 +77,7 @@
                 <label>Paiement : </label> <input type="checkbox" name="payer" id="payer" required/> 
              </div>
              <div class="formulaire__ligne">
-                <button type="submit" class="bouton">Commander</button> 
+                <button type="submit" class="bouton" id="btncommander">Commander</button> 
              </div>
        </form>
     </main>

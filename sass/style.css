@@ -638,6 +638,11 @@ input[type="checkbox"]:focus {
       justify-content: space-around;
 }
 
+.details__card--ligne:nth-child(2) {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .fa-cart-plus {
   font-size: 3rem;
 }

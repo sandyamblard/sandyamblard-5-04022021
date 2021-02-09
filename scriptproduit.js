@@ -1,3 +1,5 @@
+///GENERAL POUR TOUTES LES PAGES ///////////
+
 const getInfos = function(url){
     return new Promise(function(resolve, reject){
         let request = new XMLHttpRequest();
@@ -15,6 +17,8 @@ const getInfos = function(url){
         request.send()
     })
 }
+///////////////////////////
+
 
 //Recupération de l'id du produit de la page via son url :
 let params = new URLSearchParams(window.location.search);
@@ -64,3 +68,105 @@ getInfos(apiAndId)
 ).catch (console.error);
 
 
+
+//- 1- fonction pour afficher le coompteur a coté de l'icone du panier de la topbar :
+let panierCompteur = document.getElementById('paniercompteur');
+let count = 0;
+panierCompteur.innerHTML = count;
+
+//recup des items clés du panier : 
+  for (let i=0; i<localStorage.length; i++){
+      let valeur = localStorage.key(i);
+      let quantiteParArticle = localStorage.getItem(valeur);
+      count += parseInt(quantiteParArticle, 10);
+    console.log(count);
+  }
+
+
+
+///------------------------------------PANIER --------------------------
+
+//Ecoute du click sur bouton "ajout au panier"
+let btnpanier = document.getElementById("btnpanier");
+let qtt = document.getElementById("choixquantite");
+//let arrayCouleurQte = []
+
+btnpanier.addEventListener('click', function(){
+    if(!localStorage.getItem(pageId + "_" + select.value)){//vérifie que l'id de l'item du panier n'existe pas déjà
+      localStorage.setItem(pageId + "_" + select.value, qtt.value);
+    }else{//si l'id existe déjà, ajoute la quantité dans l'item déjà présent
+        let infosPanier = parseInt(localStorage.getItem(pageId + "_" + select.value), 10);//conversion en number
+        infosPanier += parseInt(qtt.value, 10);
+        localStorage.setItem(pageId + "_" + select.value, infosPanier);
+        console.log(infosPanier);
+    }
+    
+})    
+ 
+panierCompteur.innerHTML = count;
+
+
+   //CODE ok mais pb pour dernier cas : rajoute trop de nouvelle couleurs.... SUrement pb a cause de l'ordre de parcours de la boucle
+  /* if(!localStorage.getItem(pageId)){ //cas ou nours de la page n'est pas déja dans le panier : creation d'un localstorage
+        let ajoutcouleur = {
+            'couleur' : select.value,
+            'quantite' : parseInt(qtt.value, 10),
+            };
+        arrayCouleurQte.push(ajoutcouleur);
+        localStorage.setItem(pageId, JSON.stringify(arrayCouleurQte)); //ok ça marche, crée un nouvel article dans le panier avec l'id du nouveau nounours
+        
+        } else { //si id du nounours déjà dans le panier :
+            let recupDonnesPanier = JSON.parse(localStorage.getItem(pageId));
+            //console.log(recupDonnesPanier);
+            for (let donnees of recupDonnesPanier){
+                if(donnees.couleur !== select.value){//si couleur n'existe pas dans le panier : ajoute le nv couple couleur/quantité au panier avec l'id du nounours en cours
+                    let nvCouleur = {
+                        'couleur' : select.value,
+                        'quantite' : parseInt(qtt.value, 10),
+                        };
+                    recupDonnesPanier.push(nvCouleur);
+                    localStorage.setItem(pageId, JSON.stringify(recupDonnesPanier)); //ok ça rajoute la nouvelle couleur au panier
+                    console.log(recupDonnesPanier);
+                }else /*si couleur existe déjà*//*{
+
+                    donnees.quantite += parseInt(qtt.value, 10); //ok ça marche, ça modifie l'object correspondant mais ne sauvegarde pas dans le arrayCouleurQte ...
+                    
+                    localStorage.setItem(pageId, JSON.stringify(recupDonnesPanier));
+                    console.log("dernier cas");
+                    console.log(recupDonnesPanier);
+                    
+                }
+            }
+        }    */
+
+      /*  if(!localStorage.getItem(pageId)){ //cas ou nours de la page n'est pas déja dans le panier : creation d'un localstorage
+        let ajoutcouleur = {
+            'couleur' : select.value,
+            'quantite' : parseInt(qtt.value, 10),
+            };
+        arrayCouleurQte.push(ajoutcouleur);
+        localStorage.setItem(pageId, JSON.stringify(arrayCouleurQte)); //ok ça marche, crée un nouvel article dans le panier avec l'id du nouveau nounours
+        
+        } else { //si id du nounours déjà dans le panier :
+            let recupDonnesPanier = JSON.parse(localStorage.getItem(pageId)); //recup des éléments associés à l'id du nounours déjà présent
+            //console.log(recupDonnesPanier);
+            for (let donnees of recupDonnesPanier){
+                if(donnees.couleur == select.value){ //si le
+                    donnees.quantite += parseInt(qtt.value, 10); //ok ça marche, ça modifie l'object correspondant mais ne sauvegarde pas dans le arrayCouleurQte ...
+                    localStorage.setItem(pageId, JSON.stringify(recupDonnesPanier));
+                    console.log("dernier cas");
+                    console.log(recupDonnesPanier);
+            
+                }else if(donnees.couleur !== select.value) {
+                    let nvCouleur = {
+                        'couleur' : select.value,
+                        'quantite' : parseInt(qtt.value, 10),
+                        };
+                    recupDonnesPanier.push(nvCouleur);
+                    localStorage.setItem(pageId, JSON.stringify(recupDonnesPanier)); 
+                    console.log(recupDonnesPanier);
+                    
+                }
+            }
+        }    
+*/
