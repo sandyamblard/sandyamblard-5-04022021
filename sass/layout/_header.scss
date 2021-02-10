@@ -29,11 +29,11 @@
     color: $color-primary;
   }
   &__panier--count {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     background-color: $color-primary;
     border-radius: 50%;
-    line-height: 1.2rem;
+    line-height: 1.5rem;
     font-size: 0.8rem;
     text-align: center;
     color: white;
@@ -54,5 +54,21 @@
       color: $color-primary;
       font-weight: 700;
     }
+  }
+}
+
+.count--grow {
+  animation: countgrow 0.6s 1 backwards;
+}
+
+@keyframes countgrow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.8);
+  }
+  100% {
+    transform: scale(1);
   }
 }

@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/32f1ce6b66.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet"> 
-    <script src='script.js' async></script>
+    <script src='scriptcommande.js' async></script>
 </head>
 <body>
    <header class="topbar">
@@ -25,11 +25,11 @@
         </a>  
    </header>
    <main>
-       <section class="paniervide">
+       <section class="paniervide" id="paniervide">
         <h2 class="maintitle">Votre panier est vide</h2>
         <a class="bouton" href="index.html">Voir nos produits !</a>
        </section>
-       <section class="recap">
+       <section class="recap" id="panierplein">
         <h2 class="maintitle">Contenu du panier</h2>
         <div class="recap__ligne">
             <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
@@ -39,8 +39,8 @@
                 <p><span>Couleur :</span> choix select</p>
                 <p><span>Référence :</span> 72372776576</p>
             </div>
-            <div class="recap__ligne--quantite">Quantité : 1</div>
-            <div class="recap__ligne--prixtotal">Prix total : 25€</div>
+            <div class="recap__ligne--quantite">Quantité: 1</div>
+            <div class="recap__ligne--prixtotal">Prix total: 25€</div>
         </div>
         <div class="recap__ligne">
             <img src="teddy_4.jpg" alt="logo orinoco" class="recap__img">
@@ -50,13 +50,13 @@
                 <p><span>Couleur :</span> choix select</p>
                 <p><span>Référence :</span> 72372776576</p>
             </div>
-            <div class="recap__ligne--quantite">Quantité : 1</div>
-            <div class="recap__ligne--prixtotal">Prix total : 25€</div>
+            <div class="recap__ligne--quantite">Quantité: 1</div>
+            <div class="recap__ligne--prixtotal">Prix total: 25€</div>
         </div>
-        <div class="bouton-border">Vider le panier</div>
+        <div class="bouton-border" id="viderpanier">Vider le panier</div>
        </section>
        
-       <form method="post" action="#" class="formulaire">
+       <form method="post" action="#" class="formulaire" id="formulaire">
            <h2 class="maintitle">Valider votre commande</h2>
             <div class="formulaire__ligne">
                 <label for="firstname">Prénom : </label> <input type="text" name="firstname" id="firstname" autofocus placeholder="*" required/>

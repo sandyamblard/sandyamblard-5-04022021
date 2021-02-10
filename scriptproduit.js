@@ -74,13 +74,15 @@ let panierCompteur = document.getElementById('paniercompteur');
 let count = 0;
 panierCompteur.innerHTML = count;
 
-//recup des items clés du panier : 
+//recup des items clés du panier pour affichage du compteur du panier : 
   for (let i=0; i<localStorage.length; i++){
       let valeur = localStorage.key(i);
       let quantiteParArticle = localStorage.getItem(valeur);
       count += parseInt(quantiteParArticle, 10);
-    console.log(count);
+      panierCompteur.innerHTML = count;
   }
+
+  
 
 
 
@@ -91,19 +93,22 @@ let btnpanier = document.getElementById("btnpanier");
 let qtt = document.getElementById("choixquantite");
 //let arrayCouleurQte = []
 
+
 btnpanier.addEventListener('click', function(){
-    if(!localStorage.getItem(pageId + "_" + select.value)){//vérifie que l'id de l'item du panier n'existe pas déjà
+    if(!localStorage.getItem(pageId + "_" + select.value)){//vérifie que l'id+couleur n'existe pas déjà et crée un nouvel item ds panier
       localStorage.setItem(pageId + "_" + select.value, qtt.value);
-    }else{//si l'id existe déjà, ajoute la quantité dans l'item déjà présent
-        let infosPanier = parseInt(localStorage.getItem(pageId + "_" + select.value), 10);//conversion en number
+    }else{//si l'id+couleur existe déjà, ajoute la quantité dans l'item déjà présent
+        let infosPanier = parseInt(localStorage.getItem(pageId + "_" + select.value), 10);//conversion en number ed la qté déjà présente
         infosPanier += parseInt(qtt.value, 10);
-        localStorage.setItem(pageId + "_" + select.value, infosPanier);
-        console.log(infosPanier);
+        localStorage.setItem(pageId + "_" + select.value, infosPanier);//ajout de la qté rajoutée au total
     }
-    
+    console.log("ajouté aupanier");
+    panierCompteur.innerHTML = parseInt(panierCompteur.innerText, 10) + parseInt(qtt.value, 10);//mise à jour du compteur panier en haut
+    panierCompteur.style.animation = 'countgrow 0.5s 1 backwards';
+    //panierCompteur.classList.add("count--grow");//animation pour compteur pour visualiser l'ajout dans le panier
 })    
  
-panierCompteur.innerHTML = count;
+
 
 
    //CODE ok mais pb pour dernier cas : rajoute trop de nouvelle couleurs.... SUrement pb a cause de l'ordre de parcours de la boucle

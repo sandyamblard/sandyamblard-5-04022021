@@ -10,7 +10,7 @@ let count = 0;
       let valeur = localStorage.key(i);
       let quantiteParArticle = localStorage.getItem(valeur);
       count += parseInt(quantiteParArticle, 10);
-      panierCompteur.innerHTML = count;;
+      panierCompteur.innerHTML = count;
   }
 
 

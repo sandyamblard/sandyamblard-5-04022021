@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet"> 
     <script src='scriptproduit.js' async></script>
-    <script src='script.js' async></script>
+    
 </head>
 <body>
    <header class="topbar">
@@ -46,7 +46,19 @@
             <div class="details__card--ligne">
                 <form method='post' action="#">
                     <label for="choixquantite" >Quantité: </label>
-                        <input type="number" name="choixquantite" id="choixquantite" required />
+                    <select name="choixquantite" class="choixquantite" id="choixquantite">
+                        <option value="1" selected>1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                        <option value="6" >6</option>
+                        <option value="7" >7</option>
+                        <option value="8" >8</option>
+                        <option value="9" >9</option>
+                        <option value="10" >10</option>
+                    </select>    
+                    
                 </form>    
             </div>
             

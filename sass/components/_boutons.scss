@@ -103,3 +103,10 @@ input[type="checkbox"]:focus {
     transition: all 0.3s;
   }
 }
+
+.invalid {
+  /*classe à rajouter en JS quand input non valid*/
+  border: 2px rgb(224, 30, 30) solid;
+  transition: border 0.2s;
+  animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+}
