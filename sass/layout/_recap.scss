@@ -22,9 +22,11 @@
     border-radius: 20px 20px 0 0;
     @include desk-and-tab-version {
       display: block;
-      height: 120px;
-      width: auto;
+      max-width: 25%;
       border-radius: 20px 0px 0 20px;
+    }
+    @include tab-version {
+      margin-left: 0.5vw;
     }
   }
   &__ligne {
@@ -44,6 +46,15 @@
       margin-bottom: 0.7rem;
       text-align: right;
     }
+    &--quantite {
+      @include desk-and-tab-version {
+        margin-left: 2rem;
+        text-align: center;
+      }
+      @include desk-version {
+        margin-left: 1.5rem;
+      }
+    }
     &--prixtotal {
       font-weight: 800;
       padding-bottom: 1rem;
@@ -59,11 +70,48 @@
         margin-left: 2rem;
       }
       @include desk-version {
-        margin-left: -1rem;
+        margin-left: 1rem;
       }
     }
     &--text p span {
       text-decoration: underline;
     }
+    &--final {
+      background-color: transparent;
+    }
+  }
+}
+.bouton--final {
+  display: block;
+  width: 100%;
+  margin-top: 4vw;
+  @include desk-and-tab-version {
+    margin-top: 0;
+    width: 58%;
+  }
+}
+#viderpanier {
+  width: 100%;
+  @include desk-and-tab-version {
+    width: 40%;
+  }
+}
+.total {
+  background-color: white;
+  border: 1px darken($color-fond, 10%) solid;
+  @include bordradius;
+  font-size: 1.4rem;
+  font-weight: 800;
+  width: 100%;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  @include tab-version {
+    width: 65%;
+  }
+  @include desk-version {
+    width: 55%;
   }
 }

@@ -59,37 +59,59 @@ viderLePanier.addEventListener('click', function(){
    formulaire.style.display = "none";
 })
 
-// affichage des nounours contenus dans le panier :
+let totalCommande = document.getElementById("total");
 
+// affichage des nounours contenus dans le panier :
+let idPresents = []; 
 for (let i=0; i<localStorage.length; i++){//1- recup des infos id, couleur et quantite depuis le panier
    let idEtCouleur = localStorage.key(i);
    let quantiteParArticle = localStorage.getItem(idEtCouleur);
    let idNounours = idEtCouleur.slice(0, 24);
+   if (idPresents.includes(idNounours) == false){
+       idPresents.push(idNounours);//Rajoute dans le tableau idPresents seulement si pas encore enregistré !
+   }
    let couleurNounours = idEtCouleur.slice(25, idEtCouleur.length);
-   console.log(idNounours);
-   console.log(couleurNounours);
-   console.log(quantiteParArticle);
    let nvRecapElement = document.createElement('div');// 2- création des div et replissage avec éléments déjà présents dans le panier:
-   nvRecapElement.innerHTML = '<img src="" alt="photo nounours" class="recap__img"><div class="recap__ligne--text"><p><a href="produit.html?id='+idNounours+'"><span>Nom + lien</span></a></p><p>Decription dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p><p><span>Couleur : </span>'+  couleurNounours + ' </p><p><span>Référence : </span>'+ idNounours +'</p></div><div class="recap__ligne--quantite">Quantité: <span class="qté'+idNounours+'">' + quantiteParArticle +' </div><div class="recap__ligne--prixtotal">Prix total: 25€</div>';
+   nvRecapElement.innerHTML = '<img src="" alt="photo nounours" class="recap__img"><div class="recap__ligne--text"><p><a href="produit.html?id='+idNounours+'"><span class="name'+idNounours+'">Nom + lien</span></a></p><p class="descrip">Decription dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p><p><span>Couleur : </span>'+  couleurNounours + ' </p><p><span>Référence : </span>'+ idNounours +'</p></div><div class="recap__ligne--quantite">Quantité: <span class="qté'+idNounours+'">' + quantiteParArticle +' </div><div class="recap__ligne--prixtotal">'+quantiteParArticle+'</div>';
    ;
    nvRecapElement.classList.add('recap__ligne');
    nvRecapElement.classList.add('recap'+idNounours)
-   panierPlein.insertBefore(nvRecapElement, viderLePanier);
+   panierPlein.insertBefore(nvRecapElement, totalCommande);
 }
 
-/*Prochaine étape : 
-1- rajouter prix ds les clé des items du panierPlein, récup le prix en mm temps que id couleur et qté, pour calcul total avant injection ds innerhtml
-2- requete avec id trouvé (faire promesse pour fonction précédente)
-3- then : lister les nodelist pour img et description + compléter avec éléments recup de la requete
-*/
+let total=0;
+totalCommande.innerHTML = "Total à régler : "+total + '€';
+
+// fonction pour compléter les éléments du recapitulatif après requete : à partir object obtenu
+let completeRecap = function(object){
+    let listeDescriptionParId = document.querySelectorAll(".recap"+object._id+" .descrip");
+    for(let descrip of listeDescriptionParId){
+        descrip.innerHTML = object.description;
+    }
+    let listenameParId = document.querySelectorAll(".name"+object._id);
+    for(let name of listenameParId){
+        name.innerHTML = object.name;
+    }
+    let listePhotoParId = document.querySelectorAll(".recap"+object._id+" img");
+    for(let photo of listePhotoParId){
+        photo.setAttribute('src', object.imageUrl);
+    }
+    let listePrixParId = document.querySelectorAll(".recap"+object._id+" .recap__ligne--prixtotal");
+    for(let prix of listePrixParId){
+        let recupQte = parseInt(prix.innerText, 10);
+        let calculPrix = recupQte * parseInt(object.price, 10);
+        total += 0.01* parseInt(calculPrix, 10);
+        prix.innerHTML = "Total: "+ calculPrix*0.01+' €';
+        totalCommande.innerHTML = "Total à régler :  "+total+'€';
+    }
+}
+
+//Requete et completion des éléments :
+for (let idAChercher of idPresents){
+    getInfos('http://localhost:3000/api/teddies/' + idAChercher).then(objetobtenu => completeRecap(objetobtenu));
+}
 
 
-//fonction pour compléter éléments de recap après la requête ajax :
-/*let completerRecap = function(object){
 
-}*/
 
-//console.log(document.querySelectorAll(".recap5beaa8bf1c9d440000a57d94"));
 
-//Adresse de l'API a entrer pour la requête :
-//let apiAndId = 'http://localhost:3000/api/teddies/' + pageId;

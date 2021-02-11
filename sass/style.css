@@ -514,9 +514,14 @@ input[type="checkbox"]:focus {
 @media all and (min-width: 768px) {
   .recap__img {
     display: block;
-    height: 120px;
-    width: auto;
+    max-width: 25%;
     border-radius: 20px 0px 0 20px;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .recap__img {
+    margin-left: 0.5vw;
   }
 }
 
@@ -548,6 +553,19 @@ input[type="checkbox"]:focus {
   text-align: right;
 }
 
+@media all and (min-width: 768px) {
+  .recap__ligne--quantite {
+    margin-left: 2rem;
+    text-align: center;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .recap__ligne--quantite {
+    margin-left: 1.5rem;
+  }
+}
+
 .recap__ligne--prixtotal {
   font-weight: 800;
   padding-bottom: 1rem;
@@ -573,12 +591,65 @@ input[type="checkbox"]:focus {
 
 @media all and (min-width: 1024px) {
   .recap__ligne--text p {
-    margin-left: -1rem;
+    margin-left: 1rem;
   }
 }
 
 .recap__ligne--text p span {
   text-decoration: underline;
+}
+
+.recap__ligne--final {
+  background-color: transparent;
+}
+
+.bouton--final {
+  display: block;
+  width: 100%;
+  margin-top: 4vw;
+}
+
+@media all and (min-width: 768px) {
+  .bouton--final {
+    margin-top: 0;
+    width: 58%;
+  }
+}
+
+#viderpanier {
+  width: 100%;
+}
+
+@media all and (min-width: 768px) {
+  #viderpanier {
+    width: 40%;
+  }
+}
+
+.total {
+  background-color: white;
+  border: 1px #e1c8dc solid;
+  border-radius: 20px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  width: 100%;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .total {
+    width: 65%;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .total {
+    width: 55%;
+  }
 }
 
 .confirmation {
