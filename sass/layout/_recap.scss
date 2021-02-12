@@ -87,13 +87,15 @@
   margin-top: 4vw;
   @include desk-and-tab-version {
     margin-top: 0;
-    width: 58%;
+    width: 40%;
+    margin-left: 5%;
   }
 }
 #viderpanier {
   width: 100%;
   @include desk-and-tab-version {
     width: 40%;
+    margin-right: 5%;
   }
 }
 .total {
@@ -114,4 +116,9 @@
   @include desk-version {
     width: 55%;
   }
+}
+
+.nomnounours {
+  font-weight: 700;
+  font-size: 1.1rem;
 }

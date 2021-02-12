@@ -5,6 +5,9 @@
     min-height: 84vh;
     padding-top: 8vh;
   }
+  span {
+    font-weight: 600;
+  }
 }
 .confirmation__text {
   @include bordradius;
