@@ -24,12 +24,21 @@ let count = 0;
 panierCompteur.innerHTML = count;
 
 //recup des items clés du panier pour affichage du compteur du panier : 
-  for (let i=0; i<localStorage.length; i++){
+const updateCompteurPanier = function(){
+    for (let i=0; i<localStorage.length; i++){
       let valeur = localStorage.key(i);
       let quantiteParArticle = localStorage.getItem(valeur);
       count += parseInt(quantiteParArticle, 10);
       panierCompteur.innerHTML = count;
   }
+}
+
+updateCompteurPanier();
+  
+
+function enleveClassAnimation(){
+    panierCompteur.classList.remove("count--grow")
+}
 
 //////////////////////////////  
 
@@ -39,7 +48,8 @@ let panierVide = document.getElementById('paniervide');
 let panierPlein = document.getElementById("panierplein");
 let formulaire = document.getElementById("formulaire");
 
-if(localStorage.length !== 0){
+let affichageSectionsSelonPanier = function(){
+    if(localStorage.length !== 0){
    panierVide.style.display = "none";
    panierPlein.style.display = "flex";
    formulaire.style.display = "block";
@@ -47,7 +57,10 @@ if(localStorage.length !== 0){
       panierVide.style.display = "flex";
       panierPlein.style.display = "none";
       formulaire.style.display = "none";
-   }  
+   } 
+}
+affichageSectionsSelonPanier();
+ 
    
 // Pour vider le panier :
 let viderLePanier = document.getElementById("viderpanier");
@@ -65,8 +78,8 @@ viderLePanier.addEventListener('click', function(){
 
 // affichage des nounours contenus dans le panier :
 let totalCommande = document.getElementById("total");
-let idPresents = []; //array d'id pour la requete GET ensuite
-let products = []; //array d'id pour envoi commande, requete POST
+let idPresents = []; //array d'id pour la requete GET ensuite, 1 seule fois max par Id de nounours
+let products = []; //array d'id pour envoi commande, requete POST (autant de fois chaque nounours en fonction de la quantité choisie)
 
 for (let i=0; i<localStorage.length; i++){//1- recup des infos id, couleur et quantite depuis le panier
    let idEtCouleur = localStorage.key(i);
@@ -76,19 +89,22 @@ for (let i=0; i<localStorage.length; i++){//1- recup des infos id, couleur et qu
        idPresents.push(idNounours);//Rajoute dans le tableau idPresents seulement si pas encore enregistré !
    }
    for(let j =0; j<quantiteParArticle; j++){
-       products.push(idNounours);
+       products.push(idNounours);//rajoute dans Products, autant de fois que la quantité
    }
-   let couleurNounours = idEtCouleur.slice(25, idEtCouleur.length);
+   let couleurNounours = idEtCouleur.slice(25, idEtCouleur.length);//recuperation de la couleur à partir de la clé de l'item de localStorage
+   let couleurModifiee = couleurNounours.replace(/ /, '-');//modication dela couleur (retrait des espaces) pour pouvoir la mettre en classe
    let nvRecapElement = document.createElement('div');// 2- création des div et replissage avec éléments déjà présents dans le panier:
-   nvRecapElement.innerHTML = '<img src="" alt="photo nounours" class="recap__img"><div class="recap__ligne--text"><p><a href="produit.html?id='+idNounours+'"><span class="nomnounours name'+idNounours+'">Nom + lien</span></a></p><p class="descrip">Decription dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p><p><span>Couleur : </span>'+  couleurNounours + ' </p><p><span>Référence : </span>'+ idNounours +'</p></div><div class="recap__ligne--quantite">Quantité: <span class="qté'+idNounours+'">' + quantiteParArticle +' </div><div class="recap__ligne--prixtotal">'+quantiteParArticle+'</div>';
+   nvRecapElement.innerHTML = '<img src="" alt="photo nounours" class="recap__img"><div class="recap__ligne--text"><p><a href="produit.html?id='+idNounours+'"><span class="nomnounours name'+idNounours+'">Nom + lien</span></a></p><p class="descrip">Decription dkghsk jfgkjsd jqtgskt qkftgjgg qkgjgqlghf</p><p><span>Couleur : </span>'+  couleurNounours + ' </p><p><span>Référence : </span>'+ idNounours +'</p></div><div class="recap__ligne--quantite">Quantité: <span class="qté'+idNounours+'">' + quantiteParArticle +' </div><div class="recap__ligne--prix">Total: </br><span class="recap__ligne--prixtotal">'+quantiteParArticle+'</span> €</div><a href="#" title="Retirer cet article du panier" class="poubelle" id="'+idNounours+'_'+couleurModifiee+'"><i class="far fa-trash-alt"></i></a>';
    ;
    nvRecapElement.classList.add('recap__ligne');
-   nvRecapElement.classList.add('recap'+idNounours)
+   nvRecapElement.classList.add('recap'+idNounours);
+   nvRecapElement.setAttribute("id",'recap'+idNounours+'_'+couleurModifiee);
    panierPlein.insertBefore(nvRecapElement, totalCommande);
 }
 
 let total=0;
 totalCommande.innerHTML = "Total à régler : "+total + '€';
+
 
 // fonction pour compléter les éléments du recapitulatif après requete : à partir object obtenu
 let completeRecap = function(object){
@@ -109,7 +125,7 @@ let completeRecap = function(object){
         let recupQte = parseInt(prix.innerText, 10);
         let calculPrix = recupQte * parseInt(object.price, 10);
         total += 0.01* parseInt(calculPrix, 10);
-        prix.innerHTML = "Total: "+ calculPrix*0.01+' €';
+        prix.innerHTML = /*"Total: "+*/ calculPrix*0.01/*+' €'*/;
         totalCommande.innerHTML = "Total à régler :  "+total+'€';
     }
 }
@@ -119,6 +135,46 @@ for (let idAChercher of idPresents){
     getInfos('http://localhost:3000/api/teddies/' + idAChercher).then(objetobtenu => completeRecap(objetobtenu)).catch(error => console.log(error));
 }
 
+////Icones "poubelles" et removeItem //////
+let listPoubelles = document.getElementsByClassName("poubelle");//ciblage de toutes les poubelles dans array node list 
+
+
+for(let i=0; i < listPoubelles.length; i++){//pr chaque poubelle : recup de la valeur de l'id = Id_CouleurModifiée
+    let idRecupere = listPoubelles[i].getAttribute("id");
+    let idPourComparaisonItemLS = idRecupere.replace(/-/, ' ');//changement des - par des espaces pour retrouver la syntaxe des clés des items localStorage
+    let idPourRequetePrix = idRecupere.slice(0,24);//preparation Id nounours pour future requete pour récupérer prix total
+    let divARetirer = document.getElementById("recap"+idRecupere);//ciblage des futures div a retirer une fois article retiré du local storage
+                            
+    listPoubelles[i].addEventListener('click', function(e){//écoute du click sur la poubelle
+        e.preventDefault;
+        let qteARetirer = localStorage.getItem(idPourComparaisonItemLS); //recup qté à enlever au panier
+        localStorage.removeItem(idPourComparaisonItemLS);
+        ///
+        let divARetirer = document.getElementById("recap"+idRecupere);//retrait div correspondaante
+        divARetirer.style.display = "none";
+        ///
+        affichageSectionsSelonPanier();//affichage des différentes section suivant si panier devenu vide ou non
+ 
+        count -= qteARetirer;//changement affichage du nombre au compteur panier
+        panierCompteur.innerHTML = count;
+        ///
+        //recalcul du prix total de commande : requete pour obtenir prix de l'item
+        let calculPrixARetirer = function(prixUnitaire){
+            let prixARetirer = qteARetirer * prixUnitaire*0.01;
+            total -=prixARetirer,10;
+            totalCommande.innerHTML = "Total à régler : "+total + '€';
+        }
+        getInfos('http://localhost:3000/api/teddies/' + idPourRequetePrix).then(ojet => calculPrixARetirer(ojet.price)).catch(error => console.log(error));
+        //animation du compteur du panier :
+        panierCompteur.classList.add("count--grow");//animation pour compteur pour visualiser l'ajout dans le panier
+        setTimeout(enleveClassAnimation, 600);
+        
+
+    })
+}
+
+let calculPrixARetirer = function(prixUnitaire){
+    return qteARetirer * prixUnitaire *0.01}
 
 /////////////FORMULAIRE ET VALIDATION DE COMMANDE////////////////
 //1- sauvegarde des différents inputs de formulaire :
@@ -141,7 +197,7 @@ const postInfos = function(objetjson){
                 console.log(result),
                 )
                 
-            }else if (postrequest.onerror || postrequest.status !=201){
+            }else if (postrequest.onerror /*|| postrequest.status !=201*/){
                 reject(console.log("Erreur de requete POST, " + "readyState = " + postrequest.readyState) +"code statut: "+ postrequest.statut);
             }
         }
@@ -151,7 +207,7 @@ const postInfos = function(objetjson){
     })
  }
 
-let contact; //pré-création de l'objet contact pour remplissage ultérieur
+let contact; //pré-création de l'objet contact pour remplissage ultérieur en page confirmation
 
  //3-Ecoute du formulaire :
 formulaire.addEventListener('submit', function(e){

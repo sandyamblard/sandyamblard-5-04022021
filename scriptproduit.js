@@ -17,6 +17,26 @@ const getInfos = function(url){
         request.send()
     })
 }
+
+
+// fonction pour afficher le coompteur a coté de l'icone du panier de la topbar :
+let panierCompteur = document.getElementById('paniercompteur');
+let count = 0;
+panierCompteur.innerHTML = count;
+
+//recup des items clés du panier pour affichage du compteur du panier : 
+   const updateCompteurPanier = function(){
+    for (let i=0; i<localStorage.length; i++){
+      let valeur = localStorage.key(i);
+      let quantiteParArticle = localStorage.getItem(valeur);
+      count += parseInt(quantiteParArticle, 10);
+      panierCompteur.innerHTML = count;
+  }
+}
+
+updateCompteurPanier();
+  
+
 ///////////////////////////
 
 
@@ -69,48 +89,52 @@ getInfos(apiAndId)
 
 
 
-//- 1- fonction pour afficher le coompteur a coté de l'icone du panier de la topbar :
-let panierCompteur = document.getElementById('paniercompteur');
-let count = 0;
-panierCompteur.innerHTML = count;
 
-//recup des items clés du panier pour affichage du compteur du panier : 
-  for (let i=0; i<localStorage.length; i++){
-      let valeur = localStorage.key(i);
-      let quantiteParArticle = localStorage.getItem(valeur);
-      count += parseInt(quantiteParArticle, 10);
-      panierCompteur.innerHTML = count;
-  }
-
-  
 
 
 
 ///------------------------------------PANIER --------------------------
+//Chaque item a comme clé : IdDuNounours_CouleurChoisieAuSélectCouleur et valeur = quantitéChoisieParSelectQuantité
 
 //Ecoute du click sur bouton "ajout au panier"
 let btnpanier = document.getElementById("btnpanier");
 let qtt = document.getElementById("choixquantite");
-//let arrayCouleurQte = []
+function enleveClassAnimation(){
+    panierCompteur.classList.remove("count--grow")
+}
+function retraitModifTexteBouton(){
+    btnpanier.innerHTML = '<span>Ajouter au panier</span><i class="fas fa-cart-plus"></i>';
+}
 
 
 btnpanier.addEventListener('click', function(){
     if(!localStorage.getItem(pageId + "_" + select.value)){//vérifie que l'id+couleur n'existe pas déjà et crée un nouvel item ds panier
       localStorage.setItem(pageId + "_" + select.value, qtt.value);
     }else{//si l'id+couleur existe déjà, ajoute la quantité dans l'item déjà présent
-        let infosPanier = parseInt(localStorage.getItem(pageId + "_" + select.value), 10);//conversion en number ed la qté déjà présente
-        infosPanier += parseInt(qtt.value, 10);
-        localStorage.setItem(pageId + "_" + select.value, infosPanier);//ajout de la qté rajoutée au total
+       let infosPanier = parseInt(localStorage.getItem(pageId + "_" + select.value), 10);//conversion en number de la qté déjà présente
+        infosPanier += parseInt(qtt.value, 10);//ajout de la nouvelle quantité à celle déjà présente dans l'item
+        localStorage.setItem(pageId + "_" + select.value, infosPanier);//ajout de la qté rajoutée au total*/
     }
     console.log("ajouté aupanier");
     panierCompteur.innerHTML = parseInt(panierCompteur.innerText, 10) + parseInt(qtt.value, 10);//mise à jour du compteur panier en haut
-    panierCompteur.style.animation = 'countgrow 0.5s 1 backwards';
-    //panierCompteur.classList.add("count--grow");//animation pour compteur pour visualiser l'ajout dans le panier
+    panierCompteur.classList.add("count--grow");//animation pour compteur pour visualiser l'ajout dans le panier
+    setTimeout(enleveClassAnimation, 600);//retrait class Animation pour qu'elle puisse se répéter si rajout élément ds le panier depuis cette meme page sans la recharger
+    passerCommande.style.display = "block"; //affiche le bouton "passez commande"
+    btnpanier.innerHTML = "Ajouté";//modif provisoirement texte du bouton pour mieux visualiser l'ajout au panier 
+    setTimeout(retraitModifTexteBouton, 800);
 })    
  
 
+// Retirer le bouton "passer comande" si panier vide :
+let passerCommande = document.getElementById("passercommande");
+if(localStorage.length === 0){
+    passerCommande.style.display = "none";
+}
 
 
+
+
+//BROUILLON avec sauvegarde des items par clé : id Nounours et valeurs = objet avec qté, couleur etc
    //CODE ok mais pb pour dernier cas : rajoute trop de nouvelle couleurs.... SUrement pb a cause de l'ordre de parcours de la boucle
   /* if(!localStorage.getItem(pageId)){ //cas ou nours de la page n'est pas déja dans le panier : creation d'un localstorage
         let ajoutcouleur = {

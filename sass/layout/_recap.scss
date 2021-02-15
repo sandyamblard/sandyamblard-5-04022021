@@ -30,6 +30,7 @@
     }
   }
   &__ligne {
+    position: relative;
     background-color: white;
     @include bordradius;
     width: 100%;
@@ -41,9 +42,11 @@
       align-items: center;
     }
     &--quantite,
-    &--prixtotal {
+    &--prixtotal,
+    &--prix {
       margin-right: 2rem;
       margin-bottom: 0.7rem;
+      margin-top: 2%;
       text-align: right;
     }
     &--quantite {
@@ -55,12 +58,20 @@
         margin-left: 1.5rem;
       }
     }
-    &--prixtotal {
+    &--prixtotal,
+    &--prix {
       font-weight: 800;
       padding-bottom: 1rem;
       @include desk-and-tab-version {
         padding-bottom: 0rem;
       }
+    }
+    &--prixtotal {
+      margin-right: 0;
+    }
+    &--prix,
+    &--quantite {
+      margin-bottom: 4rem;
     }
     &--text p {
       margin-top: 0.3rem;
@@ -81,12 +92,39 @@
     }
   }
 }
+.poubelle {
+  font-size: 1.1rem;
+  padding: 0.3rem 0.5rem;
+  color: #353535;
+  border-radius: 10px;
+  border: 1px $color-secondary solid;
+  box-shadow: 1px 1px 5px #c0bfbf;
+  position: absolute;
+  left: 8%;
+  bottom: 5%;
+  &:hover {
+    box-shadow: 1px 1px 5px #9b9a9a;
+    transform: scale(1.05);
+    transition: all 0.2s;
+  }
+  @include desk-and-tab-version {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.6rem;
+    left: auto;
+    right: 4%;
+  }
+}
 .bouton--final {
   display: block;
   width: 100%;
   margin-top: 4vw;
-  @include desk-and-tab-version {
-    margin-top: 0;
+  @include tab-version {
+    margin-top: 0vw;
+    width: 40%;
+    margin-left: 5%;
+  }
+  @include desk-version {
+    margin-top: 0vw;
     width: 40%;
     margin-left: 5%;
   }
@@ -111,10 +149,10 @@
   padding-right: 1rem;
   text-align: center;
   @include tab-version {
-    width: 65%;
+    width: 75%;
   }
   @include desk-version {
-    width: 55%;
+    width: 65%;
   }
 }
 

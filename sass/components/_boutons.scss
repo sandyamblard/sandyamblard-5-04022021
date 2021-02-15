@@ -5,6 +5,7 @@
   color: white;
   line-height: 3rem;
   text-align: center;
+  font-family: $font-main;
   @include bordradius;
   @include ombre;
   @include tab-version {
@@ -76,6 +77,10 @@ input[type="checkbox"]:focus {
   box-shadow: 0 0 0 0;
 }
 
+select {
+  background-color: transparent;
+}
+
 .bouton-border {
   background-color: lighten($color-fond, 20%);
   border: 1px $color-secondary solid;
@@ -100,6 +105,33 @@ input[type="checkbox"]:focus {
     @include ombre;
     transform: scale(1.05);
     background-color: white;
+    transition: all 0.3s;
+  }
+}
+
+.bouton--violet {
+  background-color: $color-primary;
+  opacity: 0.9;
+  width: 95%;
+  color: white;
+  line-height: 3rem;
+  text-align: center;
+  margin-top: 4vw;
+  font-size: 1.4rem;
+  @include bordradius;
+  @include ombre;
+  @include tab-version {
+    width: 80%;
+  }
+  @include desk-version {
+    width: 75%;
+    line-height: 3.5rem;
+    margin-top: 2vw;
+  }
+  &:hover {
+    @include ombre-hover;
+    transform: scale(1.05);
+    opacity: 1;
     transition: all 0.3s;
   }
 }

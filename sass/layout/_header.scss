@@ -59,7 +59,6 @@
 
 .count--grow {
   animation: countgrow 0.6s 1 backwards;
-  animation-play-state: paused;
 }
 
 @keyframes countgrow {
