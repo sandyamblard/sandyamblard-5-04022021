@@ -1,5 +1,5 @@
 ///GENERAL POUR TOUTES LES PAGES ///////////
-
+/*
 const getInfos = function(url){
     return new Promise(function(resolve, reject){
         let request = new XMLHttpRequest();
@@ -17,15 +17,15 @@ const getInfos = function(url){
         request.send()
     })
 }
-
+*/
 
 // fonction pour afficher le coompteur a coté de l'icone du panier de la topbar :
-let panierCompteur = document.getElementById('paniercompteur');
+/*let panierCompteur = document.getElementById('paniercompteur');
 let count = 0;
 panierCompteur.innerHTML = count;
-
+*/
 //recup des items clés du panier pour affichage du compteur du panier : 
-   const updateCompteurPanier = function(){
+   /*const updateCompteurPanier = function(){
     for (let i=0; i<localStorage.length; i++){
       let valeur = localStorage.key(i);
       let quantiteParArticle = localStorage.getItem(valeur);
@@ -34,7 +34,7 @@ panierCompteur.innerHTML = count;
   }
 }
 
-updateCompteurPanier();
+updateCompteurPanier();*/
   
 
 ///////////////////////////
@@ -71,7 +71,7 @@ let createSelectColor = function(array){
 }
 
 
-//--2-creation fonction pour rentrer les différents éléments du nounours à paritr des resultats de l'api :
+//--2-creation fonction pour rentrer les différents éléments du nounours à partir des resultats de l'api :
 let persoProductPage = function (object){
     titleproduit.innerHTML = object.name;
     imgproduit.setAttribute('src', object.imageUrl); 
@@ -115,7 +115,6 @@ btnpanier.addEventListener('click', function(){
         infosPanier += parseInt(qtt.value, 10);//ajout de la nouvelle quantité à celle déjà présente dans l'item
         localStorage.setItem(pageId + "_" + select.value, infosPanier);//ajout de la qté rajoutée au total*/
     }
-    console.log("ajouté aupanier");
     panierCompteur.innerHTML = parseInt(panierCompteur.innerText, 10) + parseInt(qtt.value, 10);//mise à jour du compteur panier en haut
     panierCompteur.classList.add("count--grow");//animation pour compteur pour visualiser l'ajout dans le panier
     setTimeout(enleveClassAnimation, 600);//retrait class Animation pour qu'elle puisse se répéter si rajout élément ds le panier depuis cette meme page sans la recharger

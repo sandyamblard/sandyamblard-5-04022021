@@ -409,8 +409,7 @@ input .invalid {
   border: 2px #e01e1e solid;
   -webkit-transition: border 0.2s;
   transition: border 0.2s;
-  -webkit-animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
-          animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+  /*animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;*/
 }
 
 input[type="checkbox"]:focus {
@@ -630,8 +629,10 @@ select {
   margin-right: 0;
 }
 
-.recap__ligne--prix, .recap__ligne--quantite {
-  margin-bottom: 4rem;
+@media all and (min-width: 768px) {
+  .recap__ligne--prix, .recap__ligne--quantite {
+    margin-bottom: 4rem;
+  }
 }
 
 .recap__ligne--text p {

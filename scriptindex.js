@@ -1,21 +1,20 @@
 
 ///GENERAL POUR TOUTES LES PAGES ///////////
 //- 1- fonction pour afficher le coompteur a coté de l'icone du panier de la topbar :
-let panierCompteur = document.getElementById('paniercompteur');
-let count = 0;
+/*let panierCompteur = document.getElementById('paniercompteur');
+let count = 0;*/
 
 
 //recup des items clés du panier : 
-  for (let i=0; i<localStorage.length; i++){
+ /* for (let i=0; i<localStorage.length; i++){
       let valeur = localStorage.key(i);
       let quantiteParArticle = localStorage.getItem(valeur);
       count += parseInt(quantiteParArticle, 10);
       panierCompteur.innerHTML = count;
-  }
+  }*/
 
 
   //////////////////////////////////////////
-
 
 
 //Fonctions pour creation cartes de présentation produits sur page index
@@ -32,7 +31,7 @@ let createArticleIndex = function(arrayOfObjects){
 }
 
 // creation requete ajax avec promesse
-const getInfos = function(url){
+/*const getInfos = function(url){
     return new Promise(function(resolve, reject){
         let request = new XMLHttpRequest();
         request.onload = function(){
@@ -49,7 +48,7 @@ const getInfos = function(url){
         request.open('GET', url);
         request.send()
     })
-}
+}*/
 
 //Appel API et AFFICHAGE DYNAMIQUE DES PRODUITS SUR PAGE INDEX
 getInfos('http://localhost:3000/api/teddies')

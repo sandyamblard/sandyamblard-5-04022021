@@ -71,7 +71,9 @@
     }
     &--prix,
     &--quantite {
-      margin-bottom: 4rem;
+      @include desk-and-tab-version {
+        margin-bottom: 4rem;
+      }
     }
     &--text p {
       margin-top: 0.3rem;
