@@ -1,49 +1,3 @@
-///GENERAL POUR TOUTES LES PAGES ///////////
-//Fonction pour la requete GET:
-/*
-const getInfos = function(url){
-   return new Promise(function(resolve, reject){
-       let request = new XMLHttpRequest();
-       request.onload = function(){
-           if (request.status == 200){
-               resolve(
-               result = JSON.parse(request.response),
-               )
-               
-           }else if (request.onerror || request.status !=200){
-               reject(console.log("Erreur d'accès au serveur, " + "readyState = " + request.readyState));
-           }
-       }
-       request.open('GET', url);
-       request.send()
-   })
-}
-*/
-//fonction pour afficher le coompteur a coté de l'icone du panier de la topbar :
-/*let panierCompteur = document.getElementById('paniercompteur');
-let count = 0;
-panierCompteur.innerHTML = count;
-
-//recup des items clés du panier pour affichage du compteur du panier : 
-const updateCompteurPanier = function(){
-    for (let i=0; i<localStorage.length; i++){
-      let valeur = localStorage.key(i);
-      let quantiteParArticle = localStorage.getItem(valeur);
-      count += parseInt(quantiteParArticle, 10);
-      panierCompteur.innerHTML = count;
-  }
-}
-
-updateCompteurPanier();*/
-  
-
-function enleveClassAnimation(){
-    panierCompteur.classList.remove("count--grow")
-}
-
-//////////////////////////////  
-
-
 // affichage ou maquage des éléments du DOM en fonction du panier vide ou plein
 let panierVide = document.getElementById('paniervide');
 let panierPlein = document.getElementById("panierplein");
@@ -69,7 +23,6 @@ let viderLePanier = document.getElementById("viderpanier");
 viderLePanier.addEventListener('click', function(){
    localStorage.clear();
    panierCompteur.innerHTML = 0;
-   console.log("panier vidé");
    panierVide.style.display = "flex";
    panierPlein.style.display = "none";
    formulaire.style.display = "none";
@@ -126,15 +79,17 @@ let completeRecap = function(object){
     for(let prix of listePrixParId){
         let recupQte = parseInt(prix.innerText, 10);
         let calculPrix = recupQte * parseInt(object.price, 10);
-        total += 0.01* parseInt(calculPrix, 10);
+        total += 0.01* parseInt(calculPrix, 10); //calcul total à payer
         prix.innerHTML = calculPrix*0.01;
         totalCommande.innerHTML = "Total à régler :  "+total+'€';
     }
 }
 
-//Requete et completion des éléments :
+//Requete et completion des éléments à partir de varaible idPresents (array):
 for (let idAChercher of idPresents){
-    getInfos('http://localhost:3000/api/teddies/' + idAChercher).then(objetobtenu => completeRecap(objetobtenu)).catch(error => console.log(error));
+    getInfos('http://localhost:3000/api/teddies/' + idAChercher)
+        .then(objetobtenu => completeRecap(objetobtenu))
+        .catch(error => console.log(error));
 }
 
 
@@ -147,11 +102,11 @@ for(let i=0; i < listPoubelles.length; i++){//pr chaque poubelle : recup de la v
     let idRecupere = listPoubelles[i].getAttribute("id");
     let idPourComparaisonItemLS = idRecupere.replace(/-/, ' ');//changement des - par des espaces pour retrouver la syntaxe des clés des items localStorage
     let idPourRequetePrix = idRecupere.slice(0,24);//preparation Id nounours pour future requete pour récupérer prix total
-    let divARetirer = document.getElementById("recap"+idRecupere);//ciblage des futures div a retirer une fois article retiré du local storage
                             
     listPoubelles[i].addEventListener('click', function(e){//écoute du click sur la poubelle
         e.preventDefault;
         let qteARetirer = localStorage.getItem(idPourComparaisonItemLS); //recup qté à enlever au panier
+       
         localStorage.removeItem(idPourComparaisonItemLS);
         
         let divARetirer = document.getElementById("recap"+idRecupere);//retrait div correspondaante
@@ -191,11 +146,11 @@ let inputEmail = document.getElementById('email');
 
 
 //écoute de la validité des inputs et animation si invalide :
+//les patterns valides des différents inputs ont été entrés directement dans le html avec l'attribut pattern
 for(i=0; i<allInputs.length; i++){
     let  input = allInputs[i];
     allInputs[i].addEventListener('invalid', ()=>{
         input.classList.add("invalid");
-        input.style.animation = "boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2";
     })
 }
 for(i=0; i<allInputs.length; i++){
@@ -206,38 +161,41 @@ for(i=0; i<allInputs.length; i++){
 }
 
 
-//2-Fonction pour la requete POST:
-const postInfos = function(objetjson){
+
+//2-REQUETE POST
+//récup de l'url courante pour la modifier (pour redirection vers page confirmation si requete post ok)
+let urlActuelle = window.location.toString();
+let urlModifiee = urlActuelle.replace(/commande/, "confirmation");
+
+
+//Fonction pour la requete POST:
+ const postInfos = function(objetjson){
     return new Promise(function(resolve, reject){
         let postrequest = new XMLHttpRequest();
-        postrequest.onload = function(){
-            if (postrequest.status == 201){ //PS : le serveur renvoit une réponse avec statut 201 
-                resolve(
-                result = JSON.parse(postrequest.response),
-                sessionStorage.setItem("Numéro de commande :", result.orderId), //sauvegarde numero de commande obtenu
-                console.log(result),
-                )
-                
-            }else if (postrequest.onerror || postrequest.status !=201){
-                reject(console.log("Erreur de requete POST, " + "readyState = " + postrequest.readyState) +"code statut: "+ postrequest.statut);
-            }
-        }
         postrequest.open('POST', 'http://localhost:3000/api/teddies/order');
         postrequest.setRequestHeader('Content-type', 'application/json');
+        postrequest.onreadystatechange = function(){
+            if (this.readyState === 4){
+                if (this.status === 201) { //PS : le serveur renvoie une réponse 201
+                    resolve(result = JSON.parse(postrequest.response),
+                    sessionStorage.setItem("Numéro de commande :", result.orderId), //sauvegarde numero de commande obtenu
+                    document.location.href = urlModifiee //si reception de la réponse redirection vers page confirmation
+                )}else {
+                    reject(postrequest.status)
+                }
+            }
+        }
         postrequest.send(objetjson);
     })
  }
 
  
-
-//récup de l'url courante pour la modifier (cf dernière étape)
-let urlActuelle = window.location.toString();
-let urlModifiee = urlActuelle.replace(/commande/, "confirmation");
-
  //3-Ecoute du formulaire :
 formulaire.addEventListener('submit', function(e){
     e.preventDefault();
+    
     sessionStorage.setItem("Prix payé", total); //sauvegarde prix total pour la page suivante
+    
     let contact = {//creation de l'objet contact à partir des donnes du formulaire
         firstName: inputFirstName.value,
         lastName: inputLastName.value,
@@ -245,11 +203,15 @@ formulaire.addEventListener('submit', function(e){
         city: inputCity.value,
         email: inputEmail.value,
     }
+
     let envoi =  JSON.stringify({"contact": contact, "products": products});//préparation pour envoi au serveur
-     console.log(envoi);
+     
+
     // envoi au serveur et recup des infos de commande
-    postInfos(envoi).then(document.location.href = urlModifiee).catch(erreur => console.log(erreur));
-    localStorage.clear(); //vidange du panier
+    postInfos(envoi)/*.then(document.location.href = urlModifiee)*/
+        .then(localStorage.clear()) //vidange du panier
+        .catch(erreur => console.log(erreur));
+    
        
 })
 
@@ -259,15 +221,6 @@ formulaire.addEventListener('submit', function(e){
 
 
 
-///Préparation requete POST
-/*const envoiCommande = async function(){
-    let response = await fetch('http://localhost:3000/api/teddies/order', {method: 'POST',
-        body: contact,
-        body.append
-        }){
-            if(response.ok){console.log(response.json)}
-        }
-}*/
 
 
 

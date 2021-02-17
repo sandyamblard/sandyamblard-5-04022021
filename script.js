@@ -1,6 +1,7 @@
+///Fonctions utilisées sur plusieurs pages ///////////
 
-///GENERAL POUR TOUTES LES PAGES ///////////
-//- 1- fonction pour afficher le compteur a coté de l'icone du panier de la topbar :
+//fonction pour afficher le compteur a coté de l'icone du panier de la topbar :
+//1- récupération de l'élément du DOM et initialisation du compteur
 let panierCompteur = document.getElementById('paniercompteur');
 let count = 0;
 
@@ -22,17 +23,23 @@ updateCompteurPanier();
 const getInfos = function(url){
     return new Promise(function(resolve, reject){
         let request = new XMLHttpRequest();
-        request.onload = function(){
-            if (request.status == 200){
-                resolve(
-                result = JSON.parse(request.response),
-                )
+        request.open('GET', url);
+        request.onreadystatechange = function(){
+            if (this.readyState === request.DONE){
+                if (this.status === 200) {
+                    resolve(result = JSON.parse(request.response),
+                )}else {
+                    reject(request.status)
+                }
                 
-            }else if (request.onerror || request.status !=200){
-                reject(console.log("Erreur d'accès au serveur, " + "readyState = " + request.readyState));
             }
         }
-        request.open('GET', url);
         request.send()
-    })
+    })      
+}
+
+
+/// function pour animation compteur panier (utilisée ensuite pour les écoute des icones poubelles et removeItem)
+function enleveClassAnimation(){
+    panierCompteur.classList.remove("count--grow")
 }

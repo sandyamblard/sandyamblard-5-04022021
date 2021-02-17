@@ -526,6 +526,14 @@ select {
       -ms-flex-align: center;
           align-items: center;
   padding-bottom: 5vw;
+  margin-bottom: 32vh;
+  margin-top: 10vh;
+}
+
+@media all and (min-width: 768px) {
+  .paniervide {
+    margin-bottom: 40vh;
+  }
 }
 
 .paniervide .maintitle {

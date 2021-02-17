@@ -5,6 +5,11 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 5vw;
+  margin-bottom: 32vh;
+  margin-top: 10vh;
+  @include desk-and-tab-version {
+    margin-bottom: 40vh;
+  }
   .maintitle {
     margin-bottom: 4vw;
   }
