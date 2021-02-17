@@ -10,11 +10,11 @@ $font-main: "Poppins", sans-serif;
 }
 
 @mixin ombre {
-  box-shadow: 1px 1px 18px #c0bfbf;
+  box-shadow: 1px 1px 14px #c0bfbf;
 }
 
 @mixin ombre-hover {
-  box-shadow: 3px 3px 18px #838282;
+  box-shadow: 3px 3px 14px #838282;
   transition: box-shadow 0.4s;
 }
 

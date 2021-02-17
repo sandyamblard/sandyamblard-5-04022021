@@ -28,6 +28,8 @@ main {
   background-color: white;
   margin-top: 10vw;
   @include bordradius;
+  @include ombre;
+
   @include tab-version {
     width: 45%;
     margin-right: 4%;
@@ -37,6 +39,9 @@ main {
     width: 30%;
     margin-right: 3%;
     margin-top: 3vw;
+  }
+  &:hover {
+    @include ombre-hover;
   }
   &__legende--prix {
     margin-bottom: 0.5rem;

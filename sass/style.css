@@ -234,6 +234,8 @@ main a {
   background-color: white;
   margin-top: 10vw;
   border-radius: 20px;
+  -webkit-box-shadow: 1px 1px 14px #c0bfbf;
+          box-shadow: 1px 1px 14px #c0bfbf;
 }
 
 @media all and (min-width: 768px) and (max-width: 1024px) {
@@ -250,6 +252,15 @@ main a {
     margin-right: 3%;
     margin-top: 3vw;
   }
+}
+
+.produit:hover {
+  -webkit-box-shadow: 3px 3px 14px #838282;
+          box-shadow: 3px 3px 14px #838282;
+  -webkit-transition: -webkit-box-shadow 0.4s;
+  transition: -webkit-box-shadow 0.4s;
+  transition: box-shadow 0.4s;
+  transition: box-shadow 0.4s, -webkit-box-shadow 0.4s;
 }
 
 .produit__legende--prix {
@@ -301,8 +312,8 @@ main a {
   text-align: center;
   font-family: "Poppins", sans-serif;
   border-radius: 20px;
-  -webkit-box-shadow: 1px 1px 18px #c0bfbf;
-          box-shadow: 1px 1px 18px #c0bfbf;
+  -webkit-box-shadow: 1px 1px 14px #c0bfbf;
+          box-shadow: 1px 1px 14px #c0bfbf;
 }
 
 @media all and (min-width: 768px) and (max-width: 1024px) {
@@ -319,8 +330,8 @@ main a {
 }
 
 .bouton:hover {
-  -webkit-box-shadow: 3px 3px 18px #838282;
-          box-shadow: 3px 3px 18px #838282;
+  -webkit-box-shadow: 3px 3px 14px #838282;
+          box-shadow: 3px 3px 14px #838282;
   -webkit-transition: -webkit-box-shadow 0.4s;
   transition: -webkit-box-shadow 0.4s;
   transition: box-shadow 0.4s;
@@ -396,8 +407,8 @@ input:focus {
   border: 2px #c697bd solid;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  -webkit-box-shadow: 1px 1px 18px #c0bfbf;
-          box-shadow: 1px 1px 18px #c0bfbf;
+  -webkit-box-shadow: 1px 1px 14px #c0bfbf;
+          box-shadow: 1px 1px 14px #c0bfbf;
 }
 
 input:valid {
@@ -450,8 +461,8 @@ select {
 }
 
 .bouton-border:hover {
-  -webkit-box-shadow: 1px 1px 18px #c0bfbf;
-          box-shadow: 1px 1px 18px #c0bfbf;
+  -webkit-box-shadow: 1px 1px 14px #c0bfbf;
+          box-shadow: 1px 1px 14px #c0bfbf;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
   background-color: white;
@@ -469,8 +480,8 @@ select {
   margin-top: 4vw;
   font-size: 1.4rem;
   border-radius: 20px;
-  -webkit-box-shadow: 1px 1px 18px #c0bfbf;
-          box-shadow: 1px 1px 18px #c0bfbf;
+  -webkit-box-shadow: 1px 1px 14px #c0bfbf;
+          box-shadow: 1px 1px 14px #c0bfbf;
 }
 
 @media all and (min-width: 768px) and (max-width: 1024px) {
@@ -488,8 +499,8 @@ select {
 }
 
 .bouton--violet:hover {
-  -webkit-box-shadow: 3px 3px 18px #838282;
-          box-shadow: 3px 3px 18px #838282;
+  -webkit-box-shadow: 3px 3px 14px #838282;
+          box-shadow: 3px 3px 14px #838282;
   -webkit-transition: -webkit-box-shadow 0.4s;
   transition: -webkit-box-shadow 0.4s;
   transition: box-shadow 0.4s;

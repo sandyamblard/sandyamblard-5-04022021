@@ -53,7 +53,7 @@
                 <label for="city">Ville : </label> <input type="text" name="city" id="city" placeholder="*" pattern="[a-zéèçàêëùîïA-Z0-9-' ]{2,}" required/> 
              </div>
              <div class="formulaire__ligne">
-                <label for="email">E-mail : </label> <input type="email" name="email" id="email" placeholder="*" required/> 
+                <label for="email">E-mail : </label> <input type="email" name="email" id="email" pattern="[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$"placeholder="*" required/> 
              </div>
              <div class="formulaire__ligne">
                 <label>Paiement : </label> <input type="checkbox" name="payer" id="payer" required/> 
