@@ -109,6 +109,7 @@
   position: absolute;
   left: 8%;
   bottom: 5%;
+  cursor: pointer;
   &:hover {
     box-shadow: 1px 1px 5px #9b9a9a;
     transform: scale(1.05);
@@ -138,6 +139,7 @@
 }
 #viderpanier {
   width: 100%;
+  cursor: pointer;
   @include desk-and-tab-version {
     width: 40%;
     margin-right: 5%;
@@ -166,4 +168,8 @@
 .nomnounours {
   font-weight: 700;
   font-size: 1.1rem;
+}
+
+#btncommander {
+  cursor: pointer;
 }

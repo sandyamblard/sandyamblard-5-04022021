@@ -521,6 +521,10 @@ select {
           animation: boutoninvalide 0.1s cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
 }
 
+#btnpanier {
+  cursor: pointer;
+}
+
 .paniervide {
   width: 95%;
   display: -webkit-box;
@@ -691,6 +695,7 @@ select {
   position: absolute;
   left: 8%;
   bottom: 5%;
+  cursor: pointer;
 }
 
 .poubelle:hover {
@@ -735,6 +740,7 @@ select {
 
 #viderpanier {
   width: 100%;
+  cursor: pointer;
 }
 
 @media all and (min-width: 768px) {
@@ -773,6 +779,10 @@ select {
 .nomnounours {
   font-weight: 700;
   font-size: 1.1rem;
+}
+
+#btncommander {
+  cursor: pointer;
 }
 
 .confirmation {
